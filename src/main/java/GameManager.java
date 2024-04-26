@@ -1,6 +1,2 @@
 public class GameManager {
-    
-
-    
 }
-
