@@ -17,7 +17,7 @@ public class GameManager {
 
     GameManager(Server server) {
         this.server = server;   //서버 받아오기
-        for (OneClientModul ocm : server.v) {   //id를 저장
+        for (OneClientModul ocm : server.v) {   //사용자 id를 저장
             playernamelist.add(ocm.chatId);
         }
 
@@ -29,11 +29,12 @@ public class GameManager {
             server.ocm.broadcast("라이어:" + liar);
             server.ocm.broadcast("주제:" + theme);
         }
+        vote();
     }
 
     //주제 선정
     public void setTheme() {
-        File file = new File(위치); //주제 파일 스트림으로 받아오기
+        File file = new File("theme.txt"); //주제 파일 스트림으로 받아오기
         FileReader fr = null;
         BufferedReader br = null;
         try{
@@ -61,6 +62,12 @@ public class GameManager {
         int index = ramdomliar.nextInt(playernamelist.size()); //player의 수 중에서 랜덤 숫자 한개
         liar = playernamelist.get(index);  //playerlist의 인덱스 값을 가져온다
 
+    }
+
+    //투표선언하기
+    public void vote() {
+        server.ocm.broadcast("투표할 시간이 되었습니다.");
+             
     }
 
 }
